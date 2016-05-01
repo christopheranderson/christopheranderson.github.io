@@ -1,0 +1,21 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Chris Anderson
+description: > 
+    My name is Chris Anderson and I'm a Program Manager for Azure Functions, a member of the Azure App Service team, a JavaScript junky, web developer, and loving husband. I develop, write, learn, listen, and speak on mainly cloud technologies, especially related to Web development. Opinions are my own.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://christopheranderson.github.io/" # the base hostname & protocol for your site
+twitter_username: crandycodes
+github_username:  christopheranderson
+
+# Build settings
+markdown: kramdown
+paginate: 10
+
+gems: [jekyll-paginate]

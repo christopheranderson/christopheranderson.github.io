@@ -1,0 +1,64 @@
+---
+layout: default
+---
+<article class="post row" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="container">
+    <div class="col-md-12">
+        <header class="post-header m-t-2">
+            <h1 class="display-3" itemprop="name headline">{{ page.title }}</h1>
+            <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
+        </header>
+
+        <div class="post-content" itemprop="articleBody">
+            {{ content }}
+        </div>
+    </div>
+  </div>
+</article>
+
+<div class="related-posts row">
+    <div class="container">
+        <div class="col-md-12">
+            <h3 class="text-muted">Related posts</h3>
+            <ul>
+            {% for post in site.related_posts limit:3 %}
+                <li>
+                <a href="{{ post.url }}">{{ post.title }}</a> - {{ post.excerpt | truncatewords: 20 | remove: '<p>' | remove: '</p>' }}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% if page.comments %}
+<div class="comments row">
+    <div class="container">
+        <div class="col-md-12">
+            <div id="disqus_thread"></div>
+                <script>
+                /**
+                * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+                */
+                var disqus_developer = 1;
+                
+                var disqus_config = function () {
+                this.page.url = "https://christoheranderson.github.io{{ page.url }}"; // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = "{{ page.id}}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+
+                s.src = '//christopherandersonsblog.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>    
+        </div>
+    </div>
+</div>
+{% endif %}

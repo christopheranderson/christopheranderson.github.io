@@ -1,0 +1,72 @@
+---
+layout: default
+---
+<div class="row">
+    <div class="container">
+        <div class="col-md-12 content-group">
+            <div class="content-item">
+                <img class="center-block img-circle img-fluid profile-image-large" src="https://avatars3.githubusercontent.com/u/2252976?v=3&s=460" />
+            </div>
+            <div class="content-item">
+                <h1 class="display-1">Chris <br> Anderson</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="col-md-12">
+            <ul class="list-group">
+                {% for post in paginator.posts %}
+                <li class="list-group-item">
+                    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+                    <h2>
+                    <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                    </h2>
+                    {{ post.excerpt }}
+                    <p class="m-b-0">
+                    {% assign tags_list = post.categories %}  
+                    {% if tags_list.first[0] == null %}
+                        {% for tag in tags_list %} 
+                        <span class="label label-pill label-primary"><a href="#{{ tag }}">{{ tag | capitalize }}</a></span>
+                        {% endfor %}
+                    {% else %}
+                        {% for tag in tags_list %} 
+                        <span class="label label-pill label-primary"><a href="#{{ tag[0] }}">{{ tag[0] | capitalize }}</a></span>
+                        {% endfor %}
+                    {% endif %}
+                    {% assign tags_list = nil %}
+                    </p>
+                </li>
+                {% endfor %}
+                {% if paginator.total_pages > 1 %}
+                <div class="pagination">
+                {% if paginator.previous_page %}
+                    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+                {% else %}
+                    <span>&laquo; Prev</span>
+                {% endif %}
+
+                {% for page in (1..paginator.total_pages) %}
+                    {% if page == paginator.page %}
+                    {{ page }}
+                    {% elsif page == 1 %}
+                    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+                    {% else %}
+                    <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if paginator.next_page %}
+                    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+                {% else %}
+                    <span>Next &raquo;</span>
+                {% endif %}
+                </div>
+                {% endif %}
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
